@@ -1,0 +1,80 @@
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[language-server.harper-ls.config.harper-ls.linters]
+spaces = false
+
+
+[[language]]
+name = "rust"
+language-servers = [ "rust-analyzer", "harper-ls" ]
+auto-format = true
+
+[language-server.rust-analyzer.config]
+check.command = "clippy"
+cargo.buildScripts.enable = true
+procMacro.enable = true
+
+[language.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'`' = '`'
+
+
+[[language]]
+name = "nix"
+auto-format = true
+language-servers = [ "nil", "harper-ls" ]
+formatter = { command = "nixfmt" }
+
+[[language]]
+name = "go"
+auto-format = true
+language-servers = [ "gopls", "golangci-lint-langserver", "harper-ls" ]
+formatter = { command = "goimports" }
+
+
+[[language]]
+name = "python"
+language-servers = [ "basedpyright", "ruff", "harper-ls" ]
+
+[language-server.basedpyright.config.python.analysis]
+typeCheckingMode = "basic"
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", "tailwindcss-ls", "harper-ls" ]
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "tailwindcss-ls", "harper-ls" ]
+
+[[language]]
+name = "jsx"
+language-servers = [ "typescript-language-server", "tailwindcss-ls" , "harper-ls"]
+
+[[language]]
+name = "tsx"
+language-servers = [ "typescript-language-server", "tailwindcss-ls", "harper-ls" ]
+
+
+[[language]]
+name = "toml"
+language-servers = [ "taplo", "harper-ls" ]
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+
+[language-server.yaml-language-server.config.yaml]
+format = { enable = true }
+validation = true
+
+[language-server.yaml-language-server.config.yaml.schemas]
+"https://json.schemastore.org/github-workflow.json" = ".github/workflows/*.{yml,yaml}"
